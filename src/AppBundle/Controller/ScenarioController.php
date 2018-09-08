@@ -25,7 +25,7 @@ class ScenarioController extends Controller
 
     public function personalAction(Request $request)
     {
-        $email = $request->get('email');
+        $email = $request->get('email') ?? 'demo@emag.ro';
 
         $productIds = $this->getScenarioService()->getRecommendationsForScenarioPersonal($email);
 
@@ -36,7 +36,7 @@ class ScenarioController extends Controller
 
     public function cameraAction(Request $request)
     {
-        $tvId = $request->get('tv_id');
+        $tvId = $request->get('tv_id') ?? 1;
 
         $productIds = $this->getScenarioService()->getRecommendationsForScenarioCamera($tvId);
 

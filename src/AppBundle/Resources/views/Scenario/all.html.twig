@@ -1,13 +1,7 @@
-{% extends 'base.html.twig' %}
+{% extends '@App/Scenario/scenario-base.html.twig' %}
 
 {% block title %}Medusa - All Scenario{% endblock %}
 
-{% block body %}
-
+{% block body_main %}
     {% include '@App/Scenario/widgets/products.html.twig' with {title: "All"} %}
-
-{% endblock %}
-
-{% block stylesheets %}
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/scenario.css') }}"/>
 {% endblock %}

@@ -16,10 +16,16 @@ class Product
 
     /**
      * @var int
-     * @MongoDB\Field(type="integer", name="productId")
+     * @MongoDB\Field(type="integer", name="docId")
      * @MongoDB\Index(unique=true, order="asc")
      */
     protected $productId;
+
+    /**
+     * @var string
+     * @MongoDB\Field(type="string")
+     */
+    protected $name;
 
     /**
      * @var string
@@ -32,6 +38,18 @@ class Product
      * @MongoDB\Field(type="string")
      */
     protected $imageUrl;
+
+    /**
+     * @var float
+     * @MongoDB\Field(type="float", name="price")
+     */
+    protected $price;
+
+    /**
+     * @var float
+     * @MongoDB\Field(type="float", name="fullPrice")
+     */
+    protected $initialPrice;
 
     /**
      * @var float
@@ -150,6 +168,60 @@ class Product
     public function setReviewsCount(string $reviewsCount): self
     {
         $this->reviewsCount = $reviewsCount;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     * @return $this
+     */
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getPrice(): float
+    {
+        return $this->price;
+    }
+
+    /**
+     * @param float $price
+     * @return $this
+     */
+    public function setPrice(float $price): self
+    {
+        $this->price = $price;
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getInitialPrice(): float
+    {
+        return $this->initialPrice;
+    }
+
+    /**
+     * @param float $initialPrice
+     * @return $this
+     */
+    public function setInitialPrice(float $initialPrice): self
+    {
+        $this->initialPrice = $initialPrice;
         return $this;
     }
 }

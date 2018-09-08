@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Medusa - All Scenario{% endblock %}
+
+{% block body %}
+
+    <main role="main">
+        <section class="jumbotron text-center">
+            <div class="container">
+                {% block body_main %}{% endblock %}
+            </div>
+        </section>
+    </main>
+
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/scenario.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/glidejs@2.1.0/dist/css/glide.core.min.css"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/glidejs@2.1.0/dist/css/glide.theme.min.css"/>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="//cdn.jsdelivr.net/npm/glidejs@2.1.0/dist/glide.min.js"></script>
+    <script>
+        new function () {
+            var self = this;
+
+            $(function () {
+                self.initGlide();
+            });
+
+            this.initGlide = function () {
+                $('.glide').glide({ // todo the below configs don't work as expected -- don't do anything actually.
+                    type: 'carousel',
+                    startAt: 0,
+                    perView: 5,
+                    // focusAt: "center",
+                    autoplay: 3000,
+                    gap: 500,
+                    peek: {
+                        before: 100,
+                        after: 50
+                    }
+                })
+            }
+        };
+    </script>
+{% endblock %}
