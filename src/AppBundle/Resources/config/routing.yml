@@ -1,0 +1,15 @@
+scenario_listing:
+  path:     /listing
+  defaults: { _controller: AppBundle:Scenario:listing }
+
+scenario_all:
+  path:     /all
+  defaults: { _controller: AppBundle:Scenario:all }
+
+scenario_personal:
+  path:     /personal
+  defaults: { _controller: AppBundle:Scenario:personal }
+
+scenario_camera:
+  path:     /camera
+  defaults: { _controller: AppBundle:Scenario:camera }
