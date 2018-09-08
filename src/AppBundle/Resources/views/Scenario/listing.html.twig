@@ -1,7 +1,23 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Medusa - Listing{% endblock %}
+
 {% block body %}
 
-    <h1>Listing</h1>
+    <main role="main">
+        <section class="jumbotron text-center">
+            <div class="container">
+                <h1 class="jumbotron-heading">Listing</h1>
+                <hr>
+                <p><a target="_blank" href="{{ path('scenario_all') }}" class="btn btn-primary my-2">Scenario - All</a></p>
+                <p><a target="_blank" href="{{ path('scenario_personal') }}" class="btn btn-primary my-2">Scenario - Personal</a></p>
+                <p><a target="_blank" href="{{ path('scenario_camera') }}" class="btn btn-primary my-2">Scenario - Camera</a></p>
+            </div>
+        </section>
+    </main>
 
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/scenario.css') }}"/>
 {% endblock %}

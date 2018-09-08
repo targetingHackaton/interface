@@ -1,7 +1,19 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Medusa - Camera Scenario{% endblock %}
+
 {% block body %}
 
-    <h1>Camera</h1>
+    <main role="main">
+        <section class="jumbotron text-center">
+            <div class="container">
+                <h1 class="jumbotron-heading">Camera</h1>
+            </div>
+        </section>
+    </main>
 
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/scenario.css') }}"/>
 {% endblock %}
