@@ -5,6 +5,10 @@ namespace AppBundle\Controller;
 use AppBundle\Document\Product;
 use AppBundle\Service\ScenarioService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 class ScenarioController extends Controller
@@ -25,13 +29,22 @@ class ScenarioController extends Controller
 
     public function personalAction(Request $request)
     {
-        $email = $request->get('email') ?? 'demo@emag.ro';
+        $form = $this->createPersonalForm();
+        $form->handleRequest($request);
 
-        $productIds = $this->getScenarioService()->getRecommendationsForScenarioPersonal($email);
+        if ($form->isSubmitted()) {
+            $email = $form->getData()['email'];
+        }
+
+        $productIds = $this->getScenarioService()->getRecommendationsForScenarioPersonal($email ?? '');
 
         $products = $this->getProductRepo()->getProducts($productIds);
 
-        return $this->render('@App/Scenario/personal.html.twig', ['products' => $products]);
+        return $this->render('@App/Scenario/personal.html.twig', [
+            'products' => $products,
+            'form' => $form->createView(),
+            'showReload' => $form->isSubmitted()
+        ]);
     }
 
     public function cameraAction(Request $request)
@@ -56,5 +69,40 @@ class ScenarioController extends Controller
     private function getProductRepo()
     {
         return $this->get('doctrine_mongodb')->getRepository(Product::class);
+    }
+
+    private function createPersonalForm(): FormInterface
+    {
+        $builder = $this->createFormBuilder()->setMethod('POST');
+
+        $builder
+            ->add(
+                'email',
+                EmailType::class,
+                [
+                    'attr' => [
+                        'class' => 'form-control',
+                        'placeholder' => 'Email'
+                    ],
+                    'label' => 'Enter the email of your eMAG account to show you better recommendations'
+                ]
+            )
+            ->add(
+                'checkbox',
+                CheckboxType::class,
+                [
+                    'label' => "I understand and agree that my personal data won't be stored nor used in any way except for this current page load (to show profiled recommendations)",
+                ]
+            )
+            ->add(
+                'submit',
+                SubmitType::class,
+                [
+                    'attr' => ['class' => 'btn btn-lg btn-primary btn-block'],
+                    'label' => 'Show me better recommendations'
+                ]
+            );
+
+        return $builder->getForm();
     }
 }

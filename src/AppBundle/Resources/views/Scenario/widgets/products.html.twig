@@ -1,6 +1,8 @@
 <h1 class="jumbotron-heading">{{ title }}</h1>
 
-<hr style="margin-top: 45px; margin-bottom: 70px;">
+{% if noTopHr is not defined %}
+    <hr style="margin-top: 45px; margin-bottom: 70px;">
+{% endif %}
 
 <div class="row products">
 
@@ -37,6 +39,8 @@
     </div>
 
 </div>
+
+<hr style="margin-top: 45px; margin-bottom: 70px;">
 
 {% block stylesheets %}
     <style>
