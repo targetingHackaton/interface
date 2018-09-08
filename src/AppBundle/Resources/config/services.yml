@@ -1,0 +1,11 @@
+services:
+
+  guzzle.http_client:
+    class: GuzzleHttp\Client
+    arguments: [{timeout: 3}]
+
+  scenario.service:
+    class: AppBundle\Service\ScenarioService
+    calls:
+        - ['setHttpClient', ["@guzzle.http_client"]]
+        - ['setApiHostname', ["%api_hostname%"]]

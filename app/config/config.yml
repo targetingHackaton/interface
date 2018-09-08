@@ -2,6 +2,7 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: "@AppBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -69,3 +70,13 @@ swiftmailer:
 sensio_framework_extra:
    router:
         annotations: false
+
+doctrine_mongodb:
+   connections:
+    default:
+        server: "%mongodb_server%"
+        options: {}
+   default_database: rec
+   document_managers:
+        default:
+            auto_mapping: true

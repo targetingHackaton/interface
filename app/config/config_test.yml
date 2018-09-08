@@ -14,3 +14,16 @@ web_profiler:
 
 swiftmailer:
     disable_delivery: true
+
+parameters:
+    api_hostname: "http://localhost/api_hostname_test"
+
+services:
+    guzzle.test.handler:
+        class: Tests\GuzzleTestHandler
+        calls:
+        - ['setBasePath', ['%kernel.root_dir%/../tests/http.mocks/']]
+
+    guzzle.http_client:
+        class: GuzzleHttp\Client
+        arguments: [{timeout: 3, handler: "@guzzle.test.handler"}]

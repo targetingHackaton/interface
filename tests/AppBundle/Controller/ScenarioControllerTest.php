@@ -30,25 +30,34 @@ class ScenarioControllerTest extends WebTestCase
             'listing' => [
                 'uri' => '/listing',
                 'expectedText' => [
-                    'Listing'
+                    'Listing', // title
                 ]
             ],
             'all' => [
-                'uri' => '/all',
+                'uri' => '/all', // returns 1,2,3
                 'expectedText' => [
-                    'All'
+                    'All', // title
+                    '1',
+                    '2',
+                    '3',
                 ]
             ],
             'personal' => [
-                'uri' => '/personal',
+                'uri' => '/personal', // returns 4,5,6
                 'expectedText' => [
-                    'Personal'
+                    'Personal', // title
+                    '4',
+                    '5',
+                    '6',
                 ]
             ],
             'camera' => [
-                'uri' => '/camera',
+                'uri' => '/camera', // returns 7,8,9
                 'expectedText' => [
-                    'Camera'
+                    'Camera', // title
+                    '7',
+                    '8',
+                    '9',
                 ]
             ],
         ];
