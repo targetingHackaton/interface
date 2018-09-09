@@ -21,7 +21,24 @@
     </head>
     <body>
 
-        {% block body %}{% endblock %}
+    <section class="jumbotron text-center">
+        <div class="container">
+            {% for flash_message in app.session.flashBag.get('success') %}
+                <div class="alert alert-success" role="alert">{{ flash_message }}</div>
+            {% endfor %}
+            {% for flash_message in app.session.flashBag.get('info') %}
+                <div class="alert alert-info" role="alert">{{ flash_message }}</div>
+            {% endfor %}
+            {% for flash_message in app.session.flashBag.get('warning') %}
+                <div class="alert alert-warning" role="alert">{{ flash_message }}</div>
+            {% endfor %}
+            {% for flash_message in app.session.flashBag.get('error') %}
+                <div class="alert alert-danger" role="alert">{{ flash_message }}</div>
+            {% endfor %}
+
+            {% block body %}{% endblock %}
+        </div>
+    </section>
 
         <!-- REQUIRED JS SCRIPTS -->
         <!-- jQuery 3 -->

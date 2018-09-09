@@ -19,14 +19,23 @@ class EmulatorController extends Controller
             $data = $form->getData();
             dump($data);
             $this->sendRequest($data['showroomId'], $data['endpoint'], $data['cameraId'], $data['age'], $data['gender']);
+            $this->addFlash('success', 'Request sent');
         }
 
         return $this->render('@App/Emulator/index.html.twig', ['form' => $form->createView()]);
     }
 
-    public function counterAction()
+    public function infoAction()
     {
-        $data = $this->get('scenario.service')->getRawResponseFromApi('getShowroomCounter');
+        $response = $this->get('scenario.service')->getRawResponseFromApi('getShowroomCounter');
+        $response = json_decode($response, true);
+        dump($response);
+
+        $data = [
+            'counter' => $response['totalCounter'],
+            'age' => SettingsController::AGE_AVERAGES[$response['ageInterval']] ?? '',
+            'gender' => $response['gender'],
+        ];
 
         return $this->render('@App/Emulator/counter.html.twig', ['data' => $data]);
     }

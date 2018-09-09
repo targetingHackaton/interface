@@ -29,11 +29,14 @@ class SettingsController extends Controller
     ];
 
     const AGE_AVERAGES = [
-        1 => 'v1',
-        2 => 'v2',
-        3 => 'v3',
-        4 => 'v4',
-        5 => 'v5',
+        1 => '0-3 years',
+        2 => '4-7 years',
+        3 => '8-14 years',
+        4 => '15-22 years',
+        5 => '23-33 years',
+        6 => '34-44 years',
+        7 => '45-56 years',
+        8 => '57-100 years',
     ];
 
     public function indexAction(Request $request)
@@ -45,6 +48,7 @@ class SettingsController extends Controller
             $data = $form->getData();
             $this->getSettingsService()->saveShowroom($data['showroom']);
             $this->getSettingsService()->saveCamera($data['camera']);
+            $this->addFlash('success', 'Saved');
         }
 
         return $this->render('@App/Settings/index.html.twig', ['form' => $form->createView()]);

@@ -34,6 +34,6 @@ emulator_index:
   path:     /emulator
   defaults: { _controller: AppBundle:Emulator:index }
 
-showroom_counter:
-  path:     /showroom/counter
-  defaults: { _controller: AppBundle:Emulator:counter }
+showroom_info:
+  path:     /showroom/info
+  defaults: { _controller: AppBundle:Emulator:info }

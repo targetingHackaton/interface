@@ -4,20 +4,14 @@
 
 {% block body %}
 
-    <main role="main">
-        <section class="jumbotron text-center">
-            <div class="container">
-                <h1 class="jumbotron-heading">Listing</h1>
-                <hr>
-                <p><a href="{{ path('scenario_all') }}" class="btn btn-primary my-2">Scenario - All</a></p>
-                <p><a href="{{ path('scenario_person') }}" class="btn btn-primary my-2">Scenario - Person</a></p>
-                <p><a href="{{ path('scenario_camera') }}" class="btn btn-primary my-2">Scenario - Camera</a></p>
-                <p><a href="{{ path('settings_index') }}" class="btn btn-primary my-2">Settings</a></p>
-                <p><a href="{{ path('emulator_index') }}" class="btn btn-primary my-2">Emulator</a></p>
-                <p><a href="{{ path('showroom_counter') }}" class="btn btn-primary my-2">Showroom Counter</a></p>
-            </div>
-        </section>
-    </main>
+    <h1 class="jumbotron-heading">Listing</h1>
+    <hr>
+    <p><a href="{{ path('scenario_all') }}" class="btn btn-primary my-2">Scenario - All</a></p>
+    <p><a href="{{ path('scenario_person') }}" class="btn btn-primary my-2">Scenario - Person</a></p>
+    <p><a href="{{ path('scenario_camera') }}" class="btn btn-primary my-2">Scenario - Camera</a></p>
+    <p><a href="{{ path('settings_index') }}" class="btn btn-primary my-2">Settings</a></p>
+    <p><a href="{{ path('emulator_index') }}" class="btn btn-primary my-2">Emulator</a></p>
+    <p><a href="{{ path('showroom_info') }}" class="btn btn-primary my-2">Showroom Clients Info</a></p>
 
 {% endblock %}
 

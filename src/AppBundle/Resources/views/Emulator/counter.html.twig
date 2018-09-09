@@ -1,18 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Medusa - Showroom Counter{% endblock %}
+{% block title %}Medusa - Showroom Clients info{% endblock %}
 
 {% block body %}
-    <section class="jumbotron text-center">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1>People in Showroom: <strong>{{ data }}</strong></h1>
-                    <a href="{{ path('listing') }}" class="btn btn-primary my-5">Back to Listing</a>
-                </div>
-            </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <h1>People in Showroom: {{ data.counter }}</h1>
+            <h1>Age Interval: {{ data.age }}</h1>
+            <h1>Gender: {{ data.gender }}</h1>
+
+            <a href="{{ path('listing') }}" class="btn btn-primary my-5">Back to Listing</a>
         </div>
-    </section>
+    </div>
 {% endblock %}
 
 {% block javascripts %}

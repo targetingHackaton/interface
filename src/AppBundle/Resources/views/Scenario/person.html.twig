@@ -2,7 +2,7 @@
 
 {% block title %}Medusa - Person Scenario{% endblock %}
 
-{% block body_main %}
+{% block body %}
     {% include '@App/Scenario/widgets/products.html.twig' with {title: "Recommendations for you", noTopHr: true} %}
     {% if showReload %}
         <a href="{{ path('scenario_person') }}" class="btn btn-block btn-lg btn-primary">Reload (and clear history)</a>
