@@ -24,6 +24,13 @@ class EmulatorController extends Controller
         return $this->render('@App/Emulator/index.html.twig', ['form' => $form->createView()]);
     }
 
+    public function counterAction()
+    {
+        $data = $this->get('scenario.service')->getRawResponseFromApi('getShowroomCounter');
+
+        return $this->render('@App/Emulator/counter.html.twig', ['data' => $data]);
+    }
+
     private function getEmulatorForm(): FormInterface
     {
         $builder = $this->createFormBuilder()->setMethod('POST');
@@ -73,10 +80,7 @@ class EmulatorController extends Controller
                     'attr' => [
                         'class' => 'form-control',
                     ],
-                    'choices' => array_flip([
-                        1 => '1',
-                        2 => '2',
-                    ]),
+                    'choices' => array_flip(SettingsController::AGE_AVERAGES),
                     'label' => 'Age (averages)'
                 ]
             )

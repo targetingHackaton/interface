@@ -33,3 +33,7 @@ settings_index:
 emulator_index:
   path:     /emulator
   defaults: { _controller: AppBundle:Emulator:index }
+
+showroom_counter:
+  path:     /showroom/counter
+  defaults: { _controller: AppBundle:Emulator:counter }

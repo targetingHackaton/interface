@@ -28,6 +28,14 @@ class SettingsController extends Controller
         4 => '(4) Camera TV Notebooks',
     ];
 
+    const AGE_AVERAGES = [
+        1 => 'v1',
+        2 => 'v2',
+        3 => 'v3',
+        4 => 'v4',
+        5 => 'v5',
+    ];
+
     public function indexAction(Request $request)
     {
         $form = $this->getSettingsForm();
