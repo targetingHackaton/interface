@@ -13,3 +13,8 @@ scenario_personal:
 scenario_camera:
   path:     /camera
   defaults: { _controller: AppBundle:Scenario:camera }
+
+
+settings_index:
+  path:     /settings
+  defaults: { _controller: AppBundle:Settings:index }

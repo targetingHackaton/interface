@@ -47,11 +47,9 @@ class ScenarioController extends Controller
         ]);
     }
 
-    public function cameraAction(Request $request)
+    public function cameraAction()
     {
-        $tvId = $request->get('tv_id') ?? 1;
-
-        $productIds = $this->getScenarioService()->getRecommendationsForScenarioCamera($tvId);
+        $productIds = $this->getScenarioService()->getRecommendationsForScenarioCamera();
 
         $products = $this->getProductRepo()->getProducts($productIds);
 

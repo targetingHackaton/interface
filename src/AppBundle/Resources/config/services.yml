@@ -9,3 +9,9 @@ services:
     calls:
         - ['setHttpClient', ["@guzzle.http_client"]]
         - ['setApiHostname', ["%api_hostname%"]]
+        - ['setSettingsService', ["@settings.service"]]
+
+  settings.service:
+    class: AppBundle\Service\SettingsService
+    calls:
+        - ['setSession', ["@session"]]

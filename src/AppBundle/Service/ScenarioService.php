@@ -13,6 +13,9 @@ class ScenarioService
     const API_PATH_PERSONAL = 'personal';
     const API_PATH_CAMERA = 'camera';
 
+    /** @var SettingsService */
+    protected $settingsService;
+
     public function getRecommendationsForScenarioAll(): array
     {
         return $this->getRecommendationsFromApi(self::API_PATH_ALL);
@@ -23,9 +26,10 @@ class ScenarioService
         return $this->getRecommendationsFromApi(self::API_PATH_PERSONAL, ['email' => $email]);
     }
 
-    public function getRecommendationsForScenarioCamera(int $tvId): array
+    public function getRecommendationsForScenarioCamera(): array
     {
-        return $this->getRecommendationsFromApi(self::API_PATH_CAMERA, ['cameraId' => $tvId]);
+        $cameraId = $this->settingsService->getCamera();
+        return $this->getRecommendationsFromApi(self::API_PATH_CAMERA, ['cameraId' => $cameraId]);
     }
 
     private function getUri(string $path): string
@@ -35,8 +39,7 @@ class ScenarioService
 
     private function getRecommendationsFromApi(string $path, array $dataToSend = []): array
     {
-        // hardcode showroomId because api needs showroomId for all requests and interface supports only 1
-        $dataToSend += ['showroomId' => 1];
+        $dataToSend += ['showroomId' => $this->settingsService->getShowroom()];
 
         try {
             $response = $this->httpClient->request('GET', $this->getUri($path), ['query' => $dataToSend]);
@@ -52,5 +55,15 @@ class ScenarioService
         }
 
         return $productIds;
+    }
+
+    /**
+     * @param SettingsService $settingsService
+     * @return $this
+     */
+    public function setSettingsService(SettingsService $settingsService): self
+    {
+        $this->settingsService = $settingsService;
+        return $this;
     }
 }
