@@ -29,14 +29,14 @@ class SettingsController extends Controller
     ];
 
     const AGE_AVERAGES = [
-        1 => '0-3 years',
-        2 => '4-7 years',
-        3 => '8-14 years',
-        4 => '15-22 years',
-        5 => '23-33 years',
-        6 => '34-44 years',
-        7 => '45-56 years',
-        8 => '57-100 years',
+        0 => '0-3 years',
+        1 => '4-7 years',
+        2 => '8-14 years',
+        3 => '15-22 years',
+        4 => '23-33 years',
+        5 => '34-44 years',
+        6 => '45-56 years',
+        7 => '57-100 years',
     ];
 
     public function indexAction(Request $request)
