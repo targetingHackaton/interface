@@ -2,7 +2,7 @@ services:
 
   guzzle.http_client:
     class: GuzzleHttp\Client
-    arguments: [{timeout: 3}]
+    arguments: [{timeout: 5}]
 
   scenario.service:
     class: AppBundle\Service\ScenarioService
