@@ -46,9 +46,9 @@ class ScenarioControllerTest extends WebTestCase
                 'uri' => '/person', // returns 4,5,6
                 'expectedText' => [
                     'Person', // title
-                    'Placa de retea D-Link DFE-528TX',
-                    'Placa de retea D-Link DFE-530TX',
-                    'Sursa ATX Delux 500W',
+                    'UPS APC APBK500EI Back CS, 500 VA',
+                    'Memorie Kingmax TSOP DDR 512MB PC3200 400MHz',
+                    'UPS APC Back CS, 350 VA',
                 ]
             ],
             'camera' => [
