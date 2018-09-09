@@ -36,7 +36,11 @@ class ScenarioController extends Controller
             $email = $form->getData()['email'];
         }
 
-        $productIds = $this->getScenarioService()->getRecommendationsForScenarioPerson($email ?? '');
+        if (!empty($email) && $email = filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $productIds = $this->getScenarioService()->getRecommendationsForScenarioPerson($email);
+        } else {
+            $productIds = $this->getScenarioService()->getRecommendationsForScenarioAll();
+        }
 
         $products = $this->getProductRepo()->getProducts($productIds);
 
