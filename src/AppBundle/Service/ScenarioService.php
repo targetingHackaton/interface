@@ -13,6 +13,10 @@ class ScenarioService
     const API_PATH_PERSON = 'person';
     const API_PATH_CAMERA = 'camera';
 
+    const SCENARIO_ALL = 'all';
+    const SCENARIO_PERSON = 'person';
+    const SCENARIO_CAMERA = 'camera';
+
     /** @var SettingsService */
     protected $settingsService;
 

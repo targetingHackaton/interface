@@ -6,37 +6,7 @@
 
 <div class="row products">
 
-    <div class="glide">
-        <div class="glide__track" data-glide-el="track">
-            <ul class="glide__slides">
-                {% for product in products %}
-                    <a href="http://emag.ro/pd/pd/{{ product.pnk }}" target="_blank" class="product">
-                        <div class="glide__slide">
-                            <img src="{{ product.imageUrl }}">
-                            <p>
-                                <strong>{{ product.name }}</strong>
-                            </p>
-                            <p>
-                                <s>
-                                    {% if product.initialPrice != product.price %}
-                                        {{ product.initialPrice|number_format(2) }}
-                                        Lei
-                                    {% else %}
-                                        &nbsp;
-                                    {% endif %}
-                                </s>
-                            </p>
-
-                            <p style="color: red">
-                                {{ product.price|number_format(2) }}
-                                Lei
-                            </p>
-                        </div>
-                    </a>
-                {% endfor %}
-            </ul>
-        </div>
-    </div>
+    {% include '@App/Scenario/widgets/ajax-products.html.twig' %}
 
 </div>
 

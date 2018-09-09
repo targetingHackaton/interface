@@ -10,9 +10,33 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class ScenarioController extends Controller
 {
+    public function ajaxGetProductsAction(Request $request)
+    {
+        switch ($request->get('scenario')) {
+            case ScenarioService::SCENARIO_PERSON;
+                $productIds = $this->getProductIdsForEmail($request->get('email'));
+                break;
+            case ScenarioService::SCENARIO_CAMERA;
+                $productIds = $this->getScenarioService()->getRecommendationsForScenarioCamera();
+                break;
+            case ScenarioService::SCENARIO_ALL;
+            default:
+                $productIds = $this->getScenarioService()->getRecommendationsForScenarioAll();
+        }
+
+        $products = $this->getProductRepo()->getProducts($productIds);
+
+        if (empty($products)) {
+            return new Response('', 404);
+        }
+
+        return $this->render('@App/Scenario/widgets/ajax-products.html.twig', ['products' => $products]);
+    }
+
     public function allAction()
     {
         $productIds = $this->getScenarioService()->getRecommendationsForScenarioAll();
@@ -27,15 +51,7 @@ class ScenarioController extends Controller
         $form = $this->createPersonForm();
         $form->handleRequest($request);
 
-        if ($form->isSubmitted()) {
-            $email = $form->getData()['email'];
-        }
-
-        if (!empty($email) && $email = filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $productIds = $this->getScenarioService()->getRecommendationsForScenarioPerson($email);
-        } else {
-            $productIds = $this->getScenarioService()->getRecommendationsForScenarioAll();
-        }
+        $productIds = $this->getProductIdsForEmail($form->getData()['email'] ?? '');
 
         $products = $this->getProductRepo()->getProducts($productIds);
 
@@ -101,5 +117,19 @@ class ScenarioController extends Controller
             );
 
         return $builder->getForm();
+    }
+
+    /**
+     * @param $email
+     * @return array
+     */
+    private function getProductIdsForEmail($email): array
+    {
+        if (!empty($email) && $email = filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $productIds = $this->getScenarioService()->getRecommendationsForScenarioPerson($email);
+        } else {
+            $productIds = $this->getScenarioService()->getRecommendationsForScenarioAll();
+        }
+        return $productIds;
     }
 }
