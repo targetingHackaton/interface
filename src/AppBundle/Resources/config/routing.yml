@@ -7,6 +7,11 @@ scenario_ajax_get_products:
   defaults: { _controller: AppBundle:Scenario:ajaxGetProducts }
   condition: "request.isXmlHttpRequest()"
 
+scenario_ajax_check_for_refresh:
+  path:     /ajax/check-for-refresh
+  defaults: { _controller: AppBundle:Scenario:ajaxCheckForRefresh }
+  condition: "request.isXmlHttpRequest()"
+
 scenario_all:
   path:     /all
   defaults: { _controller: AppBundle:Scenario:all }

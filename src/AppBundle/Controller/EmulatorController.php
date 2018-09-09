@@ -122,7 +122,7 @@ class EmulatorController extends Controller
             $dataToSend['cameraId'] = $cameraId;
         }
 
-        $service->getResponseFromApi($path, $dataToSend);
+        $service->getRawResponseFromApi($path, $dataToSend);
     }
 
 }

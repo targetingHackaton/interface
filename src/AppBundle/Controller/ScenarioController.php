@@ -14,6 +14,15 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ScenarioController extends Controller
 {
+    public function ajaxCheckForRefreshAction()
+    {
+        if ($this->getScenarioService()->cameraShouldRefresh()) {
+            return new Response(1);
+        } else {
+            return new Response(0);
+        }
+    }
+
     public function ajaxGetProductsAction(Request $request)
     {
         switch ($request->get('scenario')) {

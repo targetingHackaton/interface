@@ -5,3 +5,43 @@
 {% block body_main %}
     {% include '@App/Scenario/widgets/products.html.twig' with {title: "Recommendations for you"} %}
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        new function () {
+            var self = this;
+
+            $(function () {
+                setInterval(function () {
+                    self.checkIfShouldRefreshProducts();
+                }, 1000);
+            });
+
+            this.checkIfShouldRefreshProducts = function() {
+                $.ajax({
+                    url: "{{ path('scenario_ajax_check_for_refresh') }}",
+                    data: {scenario: 'camera'},
+                    type: 'POST',
+                    success: function (response) {
+                        if (response == '1') {
+                            self.getProductsWithAjax();
+                        }
+                    }
+                });
+            };
+
+            this.getProductsWithAjax = function () {
+                $.ajax({
+                    url: "{{ path('scenario_ajax_get_products') }}",
+                    data: {scenario: 'camera'},
+                    type: 'POST',
+                    success: function (response) {
+                        $('.glide').html(response);
+                        $('.glide').glide({});
+                    }
+                });
+            }
+        };
+    </script>
+{% endblock %}
