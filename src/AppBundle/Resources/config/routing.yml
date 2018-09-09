@@ -1,6 +1,6 @@
-scenario_listing:
+listing:
   path:     /listing
-  defaults: { _controller: AppBundle:Scenario:listing }
+  defaults: { _controller: AppBundle:Default:listing }
 
 scenario_all:
   path:     /all
@@ -18,3 +18,8 @@ scenario_camera:
 settings_index:
   path:     /settings
   defaults: { _controller: AppBundle:Settings:index }
+
+
+emulator_index:
+  path:     /emulator
+  defaults: { _controller: AppBundle:Emulator:index }

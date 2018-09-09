@@ -13,11 +13,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ScenarioController extends Controller
 {
-    public function listingAction()
-    {
-        return $this->render('@App/Scenario/listing.html.twig', []);
-    }
-
     public function allAction()
     {
         $productIds = $this->getScenarioService()->getRecommendationsForScenarioAll();

@@ -12,6 +12,11 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return $this->redirectToRoute('scenario_listing');
+        return $this->redirectToRoute('listing');
+    }
+
+    public function listingAction()
+    {
+        return $this->render('@App/listing.html.twig', []);
     }
 }

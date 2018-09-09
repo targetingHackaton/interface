@@ -18,26 +18,21 @@ class ScenarioService
 
     public function getRecommendationsForScenarioAll(): array
     {
-        return $this->getRecommendationsFromApi(self::API_PATH_ALL);
+        return $this->getResponseFromApi(self::API_PATH_ALL);
     }
 
     public function getRecommendationsForScenarioPerson(string $email): array
     {
-        return $this->getRecommendationsFromApi(self::API_PATH_PERSON, ['email' => $email]);
+        return $this->getResponseFromApi(self::API_PATH_PERSON, ['email' => $email]);
     }
 
     public function getRecommendationsForScenarioCamera(): array
     {
         $cameraId = $this->settingsService->getCamera();
-        return $this->getRecommendationsFromApi(self::API_PATH_CAMERA, ['cameraId' => $cameraId]);
+        return $this->getResponseFromApi(self::API_PATH_CAMERA, ['cameraId' => $cameraId]);
     }
 
-    private function getUri(string $path): string
-    {
-        return "{$this->apiHostname}/{$path}";
-    }
-
-    private function getRecommendationsFromApi(string $path, array $dataToSend = []): array
+    public function getResponseFromApi(string $path, array $dataToSend = []): array
     {
         $dataToSend += ['showroomId' => $this->settingsService->getShowroom()];
 
@@ -55,6 +50,11 @@ class ScenarioService
         }
 
         return $productIds;
+    }
+
+    private function getUri(string $path): string
+    {
+        return "{$this->apiHostname}/{$path}";
     }
 
     /**
