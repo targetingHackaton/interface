@@ -9,7 +9,7 @@ Targeting Hackathon interface
     - listing of scenarios available (links to the three routes below)
 - /all
     - display recommendations based on people in the room (age and gender)
-- /personal
+- /person
     - display recommendations based on entered email (customer)
 - /camera
     - display recommendations based on who is in front of camera (age and gender)

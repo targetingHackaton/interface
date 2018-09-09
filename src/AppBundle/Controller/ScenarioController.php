@@ -27,20 +27,20 @@ class ScenarioController extends Controller
         return $this->render('@App/Scenario/all.html.twig', ['products' => $products]);
     }
 
-    public function personalAction(Request $request)
+    public function personAction(Request $request)
     {
-        $form = $this->createPersonalForm();
+        $form = $this->createPersonForm();
         $form->handleRequest($request);
 
         if ($form->isSubmitted()) {
             $email = $form->getData()['email'];
         }
 
-        $productIds = $this->getScenarioService()->getRecommendationsForScenarioPersonal($email ?? '');
+        $productIds = $this->getScenarioService()->getRecommendationsForScenarioPerson($email ?? '');
 
         $products = $this->getProductRepo()->getProducts($productIds);
 
-        return $this->render('@App/Scenario/personal.html.twig', [
+        return $this->render('@App/Scenario/person.html.twig', [
             'products' => $products,
             'form' => $form->createView(),
             'showReload' => $form->isSubmitted()
@@ -69,7 +69,7 @@ class ScenarioController extends Controller
         return $this->get('doctrine_mongodb')->getRepository(Product::class);
     }
 
-    private function createPersonalForm(): FormInterface
+    private function createPersonForm(): FormInterface
     {
         $builder = $this->createFormBuilder()->setMethod('POST');
 

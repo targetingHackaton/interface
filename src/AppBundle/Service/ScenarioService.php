@@ -10,7 +10,7 @@ class ScenarioService
     use GuzzleHttpClientTrait, ParamHoldersTrait;
 
     const API_PATH_ALL = 'all';
-    const API_PATH_PERSONAL = 'personal';
+    const API_PATH_PERSON = 'person';
     const API_PATH_CAMERA = 'camera';
 
     /** @var SettingsService */
@@ -21,9 +21,9 @@ class ScenarioService
         return $this->getRecommendationsFromApi(self::API_PATH_ALL);
     }
 
-    public function getRecommendationsForScenarioPersonal(string $email): array
+    public function getRecommendationsForScenarioPerson(string $email): array
     {
-        return $this->getRecommendationsFromApi(self::API_PATH_PERSONAL, ['email' => $email]);
+        return $this->getRecommendationsFromApi(self::API_PATH_PERSON, ['email' => $email]);
     }
 
     public function getRecommendationsForScenarioCamera(): array

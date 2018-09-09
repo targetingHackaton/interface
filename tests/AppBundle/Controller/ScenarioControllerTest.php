@@ -42,22 +42,22 @@ class ScenarioControllerTest extends WebTestCase
                     '3',
                 ]
             ],
-            'personal' => [
-                'uri' => '/personal', // returns 4,5,6
+            'person' => [
+                'uri' => '/person', // returns 4,5,6
                 'expectedText' => [
-                    'Personal', // title
-                    '4',
-                    '5',
-                    '6',
+                    'Person', // title
+                    'Placa de retea D-Link DFE-528TX',
+                    'Placa de retea D-Link DFE-530TX',
+                    'Sursa ATX Delux 500W',
                 ]
             ],
             'camera' => [
                 'uri' => '/camera', // returns 7,8,9
                 'expectedText' => [
                     'Camera', // title
-                    '7',
-                    '8',
-                    '9',
+                    'Placa de retea TRENDnet, 10/100/1000M',
+                    'Placa de retea TRENDnet, 10/100MBPS, Chipset Realtek',
+                    'Back UPS CS 650 VA',
                 ]
             ],
         ];
